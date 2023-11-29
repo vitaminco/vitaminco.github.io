@@ -1,0 +1,90 @@
+body {
+    background: url(../image/Mattroi.png);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-color: beige;
+
+}
+
+/*Animation*/
+@keyframes LeftRight {
+    0% {
+        transform: translateX(00px);
+    }
+
+    50% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes RightLeft {
+    0% {
+        transform: translateX(max-width);
+    }
+
+    50% {
+        transform: translateX(-200px);
+    }
+
+    100% {
+        transform: translateX(max-width);
+    }
+}
+
+.CloudyLeft img {
+    animation: LeftRight 20s ease-out infinite;
+}
+
+.CloudyRight img {
+    animation: RightLeft 20s ease-out infinite;
+}
+
+/*Màu trên khung avatar*/
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f6d365;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+/*AVARTAR*/
+.mavatarB {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mavatar {
+    display: block;
+    margin: 10px;
+    width: 209px;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.mavatar img {
+    object-fit: cover;
+    border-radius: 2px;
+    position: relative;
+    top: -30px;
+}
+
+.shadow-a {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .61) !important;
+}
+
+/*Hình cặp đôi*/
+.img-couple {
+    position: absolute;
+    top: -59px;
+    left: 220px;
+}
