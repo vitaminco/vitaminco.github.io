@@ -1,0 +1,341 @@
+/* Ngăn phóng to, thu nhỏ */
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    touch-action: none; /* Chặn thao tác cảm ứng */
+    background: beige url(../image/Mattroi.png) no-repeat center;
+    background-size: 80%;
+}
+
+/* Chặn thao tác phóng to */
+* {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* Ngăn zoom bằng Ctrl + Scroll */
+/* body {
+    touch-action: manipulation;
+    pointer-events: none;
+} */
+
+/* Custom kiểu chữ */
+.custom-font {
+    font-family: 'Ephesis', cursive;
+    font-weight: bold;
+}
+
+/* Chia giao diện 3/7 */
+/* Thêm những style này vào CSS hiện có của bạn */
+.w-30 {
+    width: 30%;
+    transition: width 0.5s ease-in-out;
+}
+
+.w-100 {
+    width: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Đảm bảo nút hamburger luôn hiển thị ngay cả khi ngăn kéo đóng */
+.hamburger-btn {
+    transition: right 0.5s ease-in-out;
+    z-index: 1080; /* Tăng z-index để luôn ở trên cùng */
+}
+
+/* Làm cho việc chuyển đổi drawer container mượt mà hơn */
+.drawer-container {
+    transition: right 0.5s ease-in-out;
+}
+
+/* Để ngăn kéo mặc định là đóng */
+.drawer-container.closed {
+    right: -70%;
+}
+
+.w-70 {
+    width: 70%;
+}
+/* =======================Trái========================= */
+
+/*Màu trên khung avatar*/
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f6d365;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+/*AVARTAR*/
+.mavatarB {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mavatar {
+    display: block;
+    margin: 10px;
+    width: 209px;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.mavatar img {
+    object-fit: cover;
+    border-radius: 2px;
+    position: relative;
+    top: -30px;
+}
+
+.shadow-a {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .61) !important;
+}
+
+
+/* =======================Phải========================= */
+/* Tranh chủ */
+/* Vùng chứa cả nút và ngăn kéo */
+.drawer-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    transition: right 0.5s ease-in-out;
+    background-image: url('../image/pngegg.png');
+    background-position: center;
+    /* Thêm hình nền cho container */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Khi đóng cả hệ thống */
+.drawer-container.closed {
+    right: -70%;
+}
+
+/* Cột chứa nút, nằm dọc bên trái của vùng 70% */
+.drawer-btn-column {
+    width: 140px;
+    height: 100%;
+    background-image: url('../image/tru.png');
+    background-size: auto 100%;
+    /* Tự động điều chỉnh chiều rộng, chiều cao là 100% */
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    z-index: 1060;
+    padding-top: 60px;
+}
+
+/* Nút đóng hệ thống ngăn kéo */
+.close-system-btn {
+    width: 100%;
+    height: 50px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 20px;
+    /* Tăng font size */
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    /* Tăng margin bottom */
+}
+
+.close-system-btn:hover {
+    background-color: #c82333;
+}
+
+/* Nút mở ngăn kéo */
+.open-drawer-btn {
+    width: 100%;
+    height: 60px;
+    /* Tăng chiều cao */
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    writing-mode: vertical-rl;
+    background-color: rgba(0, 123, 255, 0.8);
+    /* Màu nền với độ trong suốt */
+    border-radius: 0 5px 5px 0;
+    /* Bo góc bên phải */
+}
+
+.open-drawer-btn:hover {
+    background-color: rgba(0, 86, 179, 1);
+    transform: translateX(3px);
+    /* Hiệu ứng hover */
+}
+
+/* Ngăn kéo */
+.offcanvas-custom {
+    position: fixed;
+    top: 0;
+    right: -70%;
+    width: 70%;
+    height: 100%;
+    background-image: url('../image/pngegg.png');
+    /* Thêm hình nền cho ngăn kéo */
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Màu nền với độ trong suốt */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    /* Tăng độ đậm của bóng đổ */
+    transition: right 0.5s ease-in-out;
+    z-index: 1050;
+    padding-left: 70px;
+    /* Tăng từ 60px để chừa chỗ cho cột nút */
+    border-radius: 10px 0 0 10px;
+    /* Bo góc bên trái */
+}
+
+/* Khi mở ngăn kéo */
+.offcanvas-custom.open {
+    right: 0;
+}
+
+/* Nút hamburger (3 gạch) */
+.hamburger-btn {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100vh;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    z-index: 1080;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.hamburger-btn:hover {
+    opacity: 0.9;
+}
+
+/* Tạo 3 gạch cho nút hamburger */
+.hamburger-btn span {
+    display: block;
+    width: 35px;
+    /* Tăng từ 25px */
+    height: 5px;
+    /* Tăng từ 3px */
+    background-color: white;
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 3px;
+    /* Bo góc cho các gạch */
+}
+
+/* Trang mở đầu */
+.home-page {
+    position: relative;
+    left: -50px;
+    flex: 1;
+    flex-direction: column-reverse;
+    padding: 25px;
+    justify-content: center;
+    overflow-y: auto;
+    height: 100%;
+    border-radius: 0 0 0 10px;
+    display: flex;
+}
+
+.home-page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 25px;
+    /* Tăng padding */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Thêm độ trong suốt */
+    border-radius: 10px;
+    /* Bo góc */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    /* Thêm bóng đổ */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =======================RESPONSIVE====================*/
+@media (max-width: 992px) {
+    .d-flex.vw-100 {
+        flex-direction: column; /* Chuyển sang bố cục dọc */
+    }
+    .w-30, .w-70 {
+        width: 100%;
+        min-width: auto;
+    }
+    .w-30 {
+        padding-bottom: 20px;
+    }
+    .mavatar img {
+        height: 200px; /* Giảm kích thước avatar */
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-font {
+        font-size: 1.5rem;
+    }
+    .mavatar img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-font {
+        font-size: 1.2rem;
+    }
+    .mavatar img {
+        height: 120px;
+    }
+}
