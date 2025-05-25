@@ -1,10 +1,10 @@
-body {
+/* body {
     background: url(../image/Mattroi.png);
     background-repeat: no-repeat;
     background-size: 80%;
     background-color: beige;
 
-}
+} */
 
 /*Animation*/
 @keyframes LeftRight {
@@ -75,7 +75,6 @@ body {
     object-fit: cover;
     border-radius: 2px;
     position: relative;
-    top: -30px;
 }
 
 .shadow-a {

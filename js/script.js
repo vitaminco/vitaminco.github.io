@@ -66,3 +66,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// Ripple Effect on Click
+document.addEventListener('click', function (e) {
+    const ripple = document.createElement('div');
+    ripple.classList.add('ripple');
+    ripple.style.width = ripple.style.height = '100px';
+    ripple.style.left = `${e.clientX - 50}px`; // Center ripple at click
+    ripple.style.top = `${e.clientY - 50}px`;
+    document.body.appendChild(ripple);
+
+    // Remove ripple after animation completes
+    setTimeout(() => {
+        ripple.remove();
+    }, 700); // Match animation duration
+});

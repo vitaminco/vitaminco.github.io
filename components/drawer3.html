@@ -1,21 +1,138 @@
 <div class="p-3">
-    <h5>Kỹ năng</h5>
-    <div class="mb-3">
-        <h6>HTML/CSS</h6>
-        <div class="progress">
-            <div class="progress-bar" style="width: 90%">90%</div>
+    <div class="academic-timeline">
+        <!-- Year Card Template -->
+        <div class="year-card">
+            <div class="year-header">
+                <h3>Năm 1</h3>
+                <button class="toggle-btn">▼</button>
+            </div>
+            <ul class="subject-list">
+                <li>📘 Toán cao cấp A1</li>
+                <li>🔬 Vật lý đại cương</li>
+                <li>💻 Lập trình C cơ bản</li>
+                <li>⚖️ Pháp luật đại cương</li>
+            </ul>
         </div>
-    </div>
-    <div class="mb-3">
-        <h6>JavaScript</h6>
-        <div class="progress">
-            <div class="progress-bar" style="width: 80%">80%</div>
+
+        <div class="year-card">
+            <div class="year-header">
+                <h3>Năm 2</h3>
+                <button class="toggle-btn">▼</button>
+            </div>
+            <ul class="subject-list">
+                <li>🧠 Cấu trúc dữ liệu & giải thuật</li>
+                <li>☕ OOP với Java</li>
+                <li>🖥️ Hệ điều hành</li>
+                <li>🗄️ Cơ sở dữ liệu</li>
+            </ul>
         </div>
-    </div>
-    <div class="mb-3">
-        <h6>Bootstrap</h6>
-        <div class="progress">
-            <div class="progress-bar" style="width: 85%">85%</div>
+
+        <div class="year-card">
+            <div class="year-header">
+                <h3>Năm 3</h3>
+                <button class="toggle-btn">▼</button>
+            </div>
+            <ul class="subject-list">
+                <li>🌐 Thiết kế Web</li>
+                <li>🧩 Lập trình .NET</li>
+                <li>🤖 AI cơ bản</li>
+                <li>📊 Phân tích thiết kế hệ thống</li>
+            </ul>
         </div>
     </div>
 </div>
+<style>
+    .academic-timeline {
+        max-width: 700px;
+        margin: auto;
+        font-family: 'Segoe UI', sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .year-card {
+        border-radius: 12px;
+        background: #ffffffcc;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border-left: 5px solid #007bff;
+        transition: all 0.3s ease;
+    }
+
+    .year-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #007bff;
+        color: white;
+        padding: 16px;
+        cursor: pointer;
+    }
+
+    .year-header h3 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .toggle-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .subject-list {
+        list-style: none;
+        padding: 16px 24px;
+        margin: 0;
+        display: none;
+        animation: slideDown 0.3s ease;
+    }
+
+    .subject-list li {
+        padding: 8px 0;
+        font-size: 16px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .subject-list li:last-child {
+        border-bottom: none;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+<script>
+    document.querySelectorAll('.year-card').forEach(card => {
+        const btn = card.querySelector('.toggle-btn');
+        const list = card.querySelector('.subject-list');
+        const header = card.querySelector('.year-header');
+
+        header.addEventListener('click', () => {
+            const isVisible = list.style.display === 'block';
+
+            // Ẩn hết
+            document.querySelectorAll('.subject-list').forEach(l => l.style.display = 'none');
+            document.querySelectorAll('.toggle-btn').forEach(b => b.style.transform = 'rotate(0deg)');
+
+            // Mở cái được nhấn
+            if (!isVisible) {
+                list.style.display = 'block';
+                btn.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+</script>
