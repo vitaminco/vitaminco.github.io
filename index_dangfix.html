@@ -17,8 +17,12 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
+    <!-- Style -->
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
+    <link rel="stylesheet" href="./css/drawer1.css">
+    <link rel="stylesheet" href="./css/drawer2.css">
+    <link rel="stylesheet" href="./css/drawer3.css">
+    <link rel="stylesheet" href="./css/drawer4.css">
 
     <style type="text/css">
         @font-face {
@@ -36,12 +40,12 @@
     <div class="d-flex vw-100" style="height: 100vh; overflow: hidden;">
         <!-- Phần bên trái -->
         <div class="w-30 text-dark p-3" id="leftSection" style="min-height: 100vh; height: 100%;">
-            <div class="col-12 bg-gradient shadow-a" style="height: 90%; z-index: 3; position: relative;">
+            <div class="col-12 bg-gradient shadow-a" style="height: 100%; z-index: 3; position: relative;">
                 <div class="gradient-custom text-center rounded mt-5 mavatarB shadow">
                     <div class="col-12 mavatar">
                         <img class="shadow-a" src="./image/avatar.jpg" width="100%" height="250px" />
                     </div>
-                    <div class="mt-3">
+                    <div class="mb-3">
                         <h1 class="custom-font">Huỳnh Khánh Hưng</h1>
                         <span class="custom-font fs-4">09/10/2003</span>
                         <h3 class="custom-font">Web Designer</h3>
@@ -128,327 +132,55 @@
                 </div>
             </div>
 
-            <!-- Ngăn kéo 1 -->
+            <!-- Ngăn kéo 1 - Load từ file riêng -->
             <div class="offcanvas-custom" id="drawer1">
-                <div class="scroll-container">
-                    <div class="p-3">
-                        <h5>Ngăn kéo 1</h5>
-                        <p>Nội dung của ngăn kéo 1.</p>
-                    </div>
+                <div id="drawer1-content" class="card-body-drawer">
+                    <!-- Nội dung sẽ được load từ ./components/drawer1.html -->
                 </div>
             </div>
 
-            <!-- Ngăn kéo 2 -->
+            <!-- Ngăn kéo 2 - Load từ file riêng -->
             <div class="offcanvas-custom" id="drawer2">
-                <div class="p-3">
-                    <h5>Ngăn kéo 2</h5>
-                    <p>Nội dung của ngăn kéo 2.</p>
+                <div id="drawer2-content" class="card-body-drawer">
+                    <!-- Nội dung sẽ được load từ ./components/drawer2.html -->
                 </div>
             </div>
 
-            <!-- Ngăn kéo 3 -->
+            <!-- Ngăn kéo 3 - Load từ file riêng -->
             <div class="offcanvas-custom" id="drawer3">
-                <div class="p-3">
-                    <h5>Ngăn kéo 3</h5>
-                    <p>Nội dung của ngăn kéo 3.</p>
+                <div id="drawer3-content" class="card-body-drawer">
+                    <!-- Nội dung sẽ được load từ ./components/drawer3.html -->
                 </div>
             </div>
 
-            <!-- Ngăn kéo 4 -->
+            <!-- Ngăn kéo 4 - Load từ file riêng -->
             <div class="offcanvas-custom" id="drawer4">
-                <div class="p-3">
-                    <h5>Ngăn kéo 4</h5>
-                    <p>Nội dung của ngăn kéo 4.</p>
+                <div id="drawer4-content" class="card-body-drawer">
+                    <!-- Nội dung sẽ được load từ ./components/drawer4.html -->
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Script-->
+    <script src="./js/script.js"></script>
+    <script src="./js/loadComponent.js"></script>
+    <script src="./js/coTrang.js"></script>
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const leftSection = document.getElementById("leftSection");
-        const drawerContainer = document.getElementById("drawerContainer");
-        const hamburgerBtn = document.getElementById("hamburgerBtn");
-        const closeSystemBtn = document.getElementById("closeSystemBtn");
+    // Ripple Effect on Click
+    document.addEventListener('click', function (e) {
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        ripple.style.width = ripple.style.height = '100px';
+        ripple.style.left = `${e.clientX - 50}px`; // Center ripple at click
+        ripple.style.top = `${e.clientY - 50}px`;
+        document.body.appendChild(ripple);
 
-        // Create particle layer
-        const particleLayer = document.createElement("div");
-        particleLayer.className = "particle-layer";
-        leftSection.appendChild(particleLayer);
-
-        // Audio for thunder and dragon roar
-        const thunderSound = new Audio('../audio/thunder-rumble.mp3');
-        thunderSound.loop = false;
-        thunderSound.volume = 0.5;
-        const dragonRoarSound = new Audio('../audio/dragon-roar.mp3');
-        dragonRoarSound.loop = false;
-        dragonRoarSound.volume = 0.4;
-
-        // Multi-type particle system (sparks, embers, orbs, raindrops)
-        function createParticle(type = "spark") {
-            const particle = document.createElement("div");
-            particle.className = type;
-            const size = type === "spark" ? Math.random() * 7 + 5 :
-                type === "ember" ? Math.random() * 12 + 7 :
-                    type === "orb" ? Math.random() * 14 + 9 :
-                        Math.random() * 4 + 3; // Raindrops are smaller
-            particle.style.position = "absolute";
-            particle.style.width = `${size}px`;
-            particle.style.height = type === "raindrop" ? `${size * 2}px` : `${size}px`;
-            particle.style.background = type === "spark"
-                ? `radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent)`
-                : type === "ember"
-                    ? `radial-gradient(circle, rgba(255, 69, 0, 0.8), transparent)`
-                    : type === "orb"
-                        ? `radial-gradient(circle, rgba(255, 215, 0, 0.7), transparent)`
-                        : `linear-gradient(to bottom, rgba(135, 206, 235, 0.9), transparent)`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = type === "raindrop" ? `-10%` : `${Math.random() * 100}%`;
-            particle.style.opacity = Math.random() * 0.5 + 0.5;
-            particleLayer.appendChild(particle);
-
-            const duration = type === "raindrop" ? Math.random() * 0.4 + 0.2 : Math.random() * 2.5 + 1.5;
-            const translateY = type === "raindrop" ? window.innerHeight + 100 : Math.random() * 200 + 100;
-            particle.animate([
-                { transform: `translateY(0) scale(1)`, opacity: 0.9 },
-                { transform: `translateY(${translateY}px) scale(${type === "raindrop" ? 1 : 0.5})`, opacity: 0 }
-            ], {
-                duration: duration * 1000,
-                easing: type === "raindrop" ? "linear" : "ease-out",
-                iterations: 1
-            }).onfinish = () => particle.remove();
-        }
-
-        // Generate particles continuously
-        setInterval(() => {
-            createParticle("spark");
-            if (Math.random() < 0.5) createParticle("ember");
-            if (Math.random() < 0.4) createParticle("orb");
-            if (Math.random() < 0.7) createParticle("raindrop");
-        }, 80);
-
-        // Mouse-triggered lightning sparks
-        leftSection.addEventListener("mousemove", function (e) {
-            const spark = document.createElement("div");
-            spark.className = "spark";
-            spark.style.position = "absolute";
-            spark.style.width = "18px";
-            spark.style.height = "18px";
-            spark.style.background = `radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 215, 0, 0.5))`;
-            spark.style.left = `${e.offsetX}px`;
-            spark.style.top = `${e.offsetY}px`;
-            particleLayer.appendChild(spark);
-
-            spark.animate([
-                { transform: "scale(1)", opacity: 1 },
-                { transform: "scale(5)", opacity: 0 }
-            ], {
-                duration: 800,
-                easing: "ease-out",
-                iterations: 1
-            }).onfinish = () => spark.remove();
-
-            // Randomly play thunder sound on mouse move
-            if (Math.random() < 0.1) {
-                thunderSound.currentTime = 0;
-                thunderSound.play();
-            }
-        });
-
-        // Epic storm transition effects on drawer open/close
-        function triggerStormTransition(isOpening) {
-            // Storm burst effect
-            const burst = document.createElement("div");
-            burst.className = "storm-burst";
-            burst.style.position = "absolute";
-            burst.style.width = "100%";
-            burst.style.height = "100%";
-            burst.style.top = "0";
-            burst.style.left = "0";
-            burst.style.background = `radial-gradient(circle, rgba(255, 215, 0, 1), transparent 60%)`;
-            burst.style.opacity = "0";
-            particleLayer.appendChild(burst);
-
-            burst.animate([
-                { opacity: 0, transform: "scale(0.5)" },
-                { opacity: 0.9, transform: "scale(2.5)" },
-                { opacity: 0, transform: "scale(3.5)" }
-            ], {
-                duration: 1200,
-                easing: "ease-in-out",
-                iterations: 1
-            }).onfinish = () => burst.remove();
-
-            // Dragon roar effect
-            const roar = document.createElement("div");
-            roar.className = "dragon-roar";
-            roar.style.position = "absolute";
-            roar.style.width = "100%";
-            roar.style.height = "100%";
-            roar.style.top = "0";
-            roar.style.left = "0";
-            roar.style.background = `url('../image/dragon-roar-storm.png') center/170% no-repeat`;
-            roar.style.opacity = "0";
-            particleLayer.appendChild(roar);
-
-            roar.animate([
-                { opacity: 0, transform: "scale(0.6)" },
-                { opacity: 0.7, transform: "scale(1.4)" },
-                { opacity: 0, transform: "scale(1.8)" }
-            ], {
-                duration: 1400,
-                easing: "ease-out",
-                iterations: 1
-            }).onfinish = () => roar.remove();
-
-            // Lightning flash
-            const lightning = document.createElement("div");
-            lightning.className = "lightning-flash";
-            lightning.style.position = "absolute";
-            lightning.style.width = "100%";
-            lightning.style.height = "100%";
-            lightning.style.top = "0";
-            lightning.style.left = "0";
-            lightning.style.background = `url('../image/lightning-burst.png') center/220% no-repeat`;
-            lightning.style.opacity = "0";
-            particleLayer.appendChild(lightning);
-
-            lightning.animate([
-                { opacity: 0 },
-                { opacity: 1 },
-                { opacity: 0 }
-            ], {
-                duration: 600,
-                easing: "ease-in-out",
-                iterations: 3
-            }).onfinish = () => lightning.remove();
-
-            // Play dragon roar sound on transition
-            dragonRoarSound.currentTime = 0;
-            dragonRoarSound.play();
-        }
-
-        // Trigger animations on drawer open/close
-        hamburgerBtn.addEventListener("click", () => {
-            triggerStormTransition(!drawerContainer.classList.contains("closed"));
-        });
-
-        closeSystemBtn.addEventListener("click", () => {
-            triggerStormTransition(false);
-        });
-
-        // Initial storm eruption with thunder sound
-        leftSection.animate([
-            { opacity: 0, transform: "scale(0.7)" },
-            { opacity: 1, transform: "scale(1)" }
-        ], {
-            duration: 2500,
-            easing: "ease-out",
-            iterations: 1
-        });
-        thunderSound.currentTime = 0;
-        thunderSound.play();
-
-        // Periodic thunder sound
-        setInterval(() => {
-            if (Math.random() < 0.2) {
-                thunderSound.currentTime = 0;
-                thunderSound.play();
-            }
-        }, 5000);
-
-        // Add CSS for particles and effects
-        const style = document.createElement("style");
-        style.textContent = `
-        .particle, .spark, .ember, .orb, .raindrop {
-            position: absolute;
-            pointer-events: none;
-        }
-        .storm-burst, .dragon-roar, .lightning-flash {
-            position: absolute;
-            pointer-events: none;
-        }
-        .raindrop {
-            border-radius: 50% 50% 0 0;
-        }
-    `;
-        document.head.appendChild(style);
-    });
-
-    // Chặn zoom bằng cuộn chuột (trackpad) trên Chrome:
-    document.addEventListener('wheel', function (event) {
-        if (event.ctrlKey) {
-            event.preventDefault();
-        }
-    }, { passive: false });
-
-    // Mở ra zô của ngăn kéo
-    document.addEventListener("DOMContentLoaded", function () {
-        let buttons = document.querySelectorAll(".open-drawer-btn");
-        let drawers = document.querySelectorAll(".offcanvas-custom");
-        let hamburgerBtn = document.getElementById("hamburgerBtn");
-        let closeSystemBtn = document.getElementById("closeSystemBtn");
-        let drawerContainer = document.getElementById("drawerContainer");
-        let leftSection = document.querySelector(".w-30");
-        let homePage = document.querySelector(".home-page");
-        let video = homePage.querySelector("video"); // Select the video element
-
-        // Mặc định khi tải trang, bên trái sẽ chiếm 100% màn hình
-        leftSection.classList.remove("w-30");
-        leftSection.classList.add("w-100");
-
-        // Xử lý sự kiện cho nút hamburger
-        hamburgerBtn.addEventListener("click", function () {
-            drawerContainer.classList.toggle("closed");
-
-            if (drawerContainer.classList.contains("closed")) {
-                leftSection.classList.remove("w-30");
-                leftSection.classList.add("w-100");
-                homePage.classList.remove("hidden");
-                if (video) video.play(); // Resume video when home page is shown
-            } else {
-                leftSection.classList.remove("w-100");
-                leftSection.classList.add("w-30");
-            }
-
-            // Đóng tất cả các ngăn kéo khi mở hệ thống
-            drawers.forEach((d) => d.classList.remove("open"));
-            homePage.classList.remove("hidden");
-            if (video) video.play(); // Ensure video plays when drawer system opens
-        });
-
-        // Xử lý sự kiện cho nút đóng hệ thống
-        closeSystemBtn.addEventListener("click", function () {
-            drawerContainer.classList.add("closed");
-            leftSection.classList.remove("w-30");
-            leftSection.classList.add("w-100");
-            homePage.classList.remove("hidden");
-            if (video) video.pause();
-            drawers.forEach((d) => d.classList.remove("open"));
-        });
-
-        // Xử lý sự kiện cho các nút mở ngăn kéo
-        buttons.forEach((button) => {
-            button.addEventListener("click", function () {
-                let targetId = this.getAttribute("data-target");
-                let drawer = document.getElementById(targetId);
-                let isOpen = drawer.classList.contains("open");
-
-                leftSection.classList.remove("w-100");
-                leftSection.classList.add("w-30");
-
-                drawers.forEach((d) => d.classList.remove("open"));
-
-                if (!isOpen) {
-                    drawer.classList.add("open");
-                    homePage.classList.add("hidden");
-                    if (video) video.pause(); // Pause video when a drawer is opened
-                } else {
-                    homePage.classList.remove("hidden");
-                    if (video) video.play(); // Resume video if drawer is closed
-                }
-            });
-        });
+        // Remove ripple after animation completes
+        setTimeout(() => {
+            ripple.remove();
+        }, 700); // Match animation duration
     });
 </script>
 
