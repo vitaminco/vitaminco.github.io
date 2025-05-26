@@ -419,5 +419,4 @@
         });
         observer.observe({ entryTypes: ['measure'] });
     }
-
 })();
