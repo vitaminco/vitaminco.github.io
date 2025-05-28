@@ -3,21 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link rel="icon" type="image/png" href="./image/Mattroi.png">
     <title>Profile - Huỳnh Khánh Hưng</title>
-    <!--Bootstrap-->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-
-    <!-- Chặn zoom trên trình duyệt -->
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
-
     <!-- Style -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/drawer1.css">
@@ -26,7 +22,6 @@
     <link rel="stylesheet" href="./css/drawer4.css">
     <link rel="stylesheet" href="./css/deviceBlocker.css">
     <link type="text/css" rel="stylesheet" href="./css/site.css">
-
     <style type="text/css">
         @font-face {
             font-family: Ephesis;
@@ -37,8 +32,7 @@
             display: none;
         }
     </style>
-
-    <!-- Phần cây trái tim -->
+    <!-- Heart tree effect -->
     <link type="text/css" rel="stylesheet" href="./renxi/default.css">
     <script type="text/javascript" src="./renxi/jquery.min.js"></script>
     <script type="text/javascript" src="./renxi/jscex.min.js"></script>
@@ -53,12 +47,13 @@
 
 <body>
     <div class="d-flex vw-100" style="height: 100vh; overflow: hidden;">
-        <!-- Phần bên trái -->
+        <!-- Left Section -->
         <div class="w-30 text-dark p-3" id="leftSection" style="min-height: 100vh; height: 100%;">
             <div class="col-12 bg-gradient shadow-a" style="height: 100%; z-index: 3; position: relative;">
                 <div class="gradient-custom text-center rounded mt-5 mavatarB shadow">
                     <div class="col-12 mavatar">
-                        <img class="shadow-a" src="./image/avatar.jpg" width="100%" height="250px" />
+                        <img class="shadow-a" src="./image/avatar.jpg" width="100%" height="100%"
+                            style="object-fit: cover;" />
                     </div>
                     <div class="mb-5">
                         <h1 class="custom-font">Huỳnh Khánh Hưng</h1>
@@ -99,19 +94,16 @@
                 </div>
             </div>
         </div>
-
-        <!-- Nút hamburger (3 gạch) -->
+        <!-- Hamburger Button -->
         <button class="hamburger-btn" id="hamburgerBtn">
             <img src="./image/tru.png" alt="Menu" style="transform: scaleX(-1);">
             <span></span>
             <span></span>
             <span></span>
         </button>
-
-        <!-- Container chính -->
+        <!-- Main Container -->
         <div class="drawer-container closed" id="drawerContainer">
-
-            <!-- Cột chứa nút -->
+            <!-- Drawer Button Column -->
             <div class="drawer-btn-column">
                 <div>
                     <button class="close-system-btn" id="closeSystemBtn">✕</button>
@@ -121,8 +113,7 @@
                     <button class="open-drawer-btn" data-target="drawer4">Ngăn 4</button>
                 </div>
             </div>
-
-            <!-- Trang mở đầu hiển thị khi mở hệ thống -->
+            <!-- Home Page -->
             <div class="home-page">
                 <div class="home-page-content">
                     <div class="features-container">
@@ -133,38 +124,33 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Ngăn kéo 1 - Load từ file riêng -->
+            <!-- Drawer 1 -->
             <div class="offcanvas-custom" id="drawer1">
                 <div id="drawer1-content" class="card-body-drawer">
-                    <!-- Nội dung sẽ được load từ ./components/drawer1.html -->
+                    <!-- Content loaded from ./components/drawer1.html -->
                 </div>
             </div>
-
-            <!-- Ngăn kéo 2 - Load từ file riêng -->
+            <!-- Drawer 2 -->
             <div class="offcanvas-custom" id="drawer2">
                 <div id="drawer2-content" class="card-body-drawer">
-                    <!-- Nội dung sẽ được load từ ./components/drawer2.html -->
+                    <!-- Content loaded from ./components/drawer2.html -->
                 </div>
             </div>
-
-            <!-- Ngăn kéo 3 - Load từ file riêng -->
+            <!-- Drawer 3 -->
             <div class="offcanvas-custom" id="drawer3">
                 <div id="drawer3-content" class="card-body-drawer">
-                    <!-- Nội dung sẽ được load từ ./components/drawer3.html -->
+                    <!-- Content loaded from ./components/drawer3.html -->
                 </div>
             </div>
-
-            <!-- Ngăn kéo 4 - Load từ file riêng -->
+            <!-- Drawer 4 -->
             <div class="offcanvas-custom" id="drawer4">
                 <div id="drawer4-content" class="card-body-drawer" style="background-color: beige !important;">
-                    <!-- Nội dung sẽ được load từ ./components/drawer4.html -->
+                    <!-- Content loaded from ./components/drawer4.html -->
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Script-->
+    <!-- Scripts -->
     <script src="./js/script.js"></script>
     <script src="./js/loadComponent.js"></script>
     <script src="./js/coTrang.js"></script>
