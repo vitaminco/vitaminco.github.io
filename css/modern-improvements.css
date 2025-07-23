@@ -695,7 +695,7 @@ header#home {
 .nav-menu ul.nav li a {
     color: white;
     font-weight: 800;
-    padding: 10px 16px;
+    padding: 12px 20px;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-transform: uppercase;
@@ -704,18 +704,15 @@ header#home {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
     position: relative;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    min-width: 100px;
 }
 
-.nav-icon {
-    font-size: 1.3rem;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-}
 
 .nav-menu ul.nav li a::before {
     content: '';
@@ -860,17 +857,14 @@ header#home {
     }
     
     .space-nav li a {
-        padding: 6px 10px;
-        min-width: 60px;
-    }
-    
-    .nav-icon {
-        font-size: 1.5rem;
+        padding: 8px 12px;
+        min-width: 70px;
+        font-size: 0.9rem;
     }
     
     .nav-text {
-        font-size: 0.95rem;
-        letter-spacing: 0.8px;
+        font-size: 0.9rem;
+        letter-spacing: 0.6px;
     }
     
     .hud-corner {
@@ -912,17 +906,14 @@ header#home {
     }
     
     .space-nav li a {
-        padding: 4px 6px;
-        min-width: 50px;
-    }
-    
-    .nav-icon {
-        font-size: 1.3rem;
+        padding: 6px 8px;
+        min-width: 60px;
+        font-size: 0.8rem;
     }
     
     .nav-text {
-        font-size: 0.85rem;
-        letter-spacing: 0.7px;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
     }
     
     .hud-corner {
